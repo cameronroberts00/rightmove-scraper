@@ -9,13 +9,10 @@ const getData = async () => {
   const html = await response.text();
   const $ = cheerio.load(html);
   const propertyCards = $("div.propertyCard-wrapper");
-  let results = [];
+  const results = [];
 
   propertyCards.each((_, e) => {
     const rawHTML = $(e);
-    // console.log(
-    //   rawHTML.find(".propertyCard-content a.propertyCard-link").attr("href")
-    // );
     results.push({
       name: rawHTML.find(".propertyCard-address").text().trim(),
       link: `https://www.rightmove.co.uk${rawHTML
